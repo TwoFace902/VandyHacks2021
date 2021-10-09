@@ -1,0 +1,22 @@
+[gd_resource type="Environment" load_steps=3 format=2]
+
+[ext_resource path="res://le funny stars.jpg" type="Texture" id=1]
+
+[sub_resource type="PanoramaSky" id=1]
+radiance_size = 3
+panorama = ExtResource( 1 )
+
+[resource]
+background_mode = 2
+background_sky = SubResource( 1 )
+background_sky_custom_fov = 86.0
+ambient_light_color = Color( 1, 1, 1, 1 )
+glow_enabled = true
+glow_intensity = 0.6
+glow_strength = 0.9
+glow_bloom = 1.0
+glow_hdr_threshold = 0.9
+glow_hdr_luminance_cap = 256.0
+glow_hdr_scale = 4.0
+glow_bicubic_upscale = true
+adjustment_enabled = true
