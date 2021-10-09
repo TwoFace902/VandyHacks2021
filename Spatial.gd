@@ -1,21 +1,25 @@
 extends Spatial
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+# var velocitiesDict = {} shut up sam
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
+	#for planet in self.get_children():
+		#velocitiesDict[planet] = Vector3() shut up sam
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+var gooberPlanetVelocity = Vector3(10,0,0)
+var G = 5000
+
 func _process(delta):
-	$Sun.translation.x += 3 * delta;
-	$GooberPlanet.rotation.y += 5*delta;
-	#$GooberPlanet.translation.z -= 100*delta;
-	#$GooberPlanet/CSGSphere.rotation.x += 2*delta;
-	#$GooberPlanet/CSGSphere.rotation.z += 10*delta;
+	var thisPlanet = $GooberPlanet
+	var otherPlanet = $Sun
+	var diff = otherPlanet.translation-thisPlanet.translation
+	var distance = diff.length_squared()
+	var force = (G*1*1/distance)*(diff.normalized())
+	gooberPlanetVelocity += force*delta*10
+	$GooberPlanet.translation += gooberPlanetVelocity*delta*10
+	print(gooberPlanetVelocity)
+	#print($GooberPlanet.translation)
 	
