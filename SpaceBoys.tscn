@@ -1,28 +1,20 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Sun.gd" type="Script" id=1]
 [ext_resource path="res://Spatial.gd" type="Script" id=2]
 [ext_resource path="res://default_env.tres" type="Environment" id=3]
-[ext_resource path="res://pogman.png" type="Texture" id=4]
-[ext_resource path="res://roblox-death-sound-effect.mp3" type="AudioStream" id=5]
 [ext_resource path="res://sunlol.tres" type="Material" id=6]
 [ext_resource path="res://Sun.tres" type="Material" id=7]
 
-[sub_resource type="SpatialMaterial" id=2]
-albedo_texture = ExtResource( 4 )
-uv1_scale = Vector3( 0.1, 0.1, 0.1 )
-uv1_triplanar = true
-
-[sub_resource type="StreamTexture" id=3]
+[sub_resource type="StreamTexture" id=1]
 resource_local_to_scene = true
 flags = 23
 load_path = "res://.import/8k_jupiter.jpg-d896f3f79570db1477f275b06d7534fc.s3tc.stex"
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=2]
 params_specular_mode = 2
 params_line_width = 0.1
 params_point_size = 18.6
-albedo_texture = SubResource( 3 )
+albedo_texture = SubResource( 1 )
 emission_enabled = true
 emission = Color( 0, 0, 0, 1 )
 emission_energy = 1.0
@@ -39,10 +31,10 @@ uv1_triplanar_sharpness = 14.3587
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 2 )
 
-[node name="Sun" type="Spatial" parent="."]
-script = ExtResource( 1 )
+[node name="Sun1" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 45, 0 )
 
-[node name="PhysicalSun" type="CSGSphere" parent="Sun"]
+[node name="CSGSphere" type="CSGSphere" parent="Sun1"]
 material_override = ExtResource( 7 )
 cast_shadow = 2
 radius = 40.0
@@ -50,38 +42,106 @@ radial_segments = 25
 rings = 25
 material = ExtResource( 6 )
 
-[node name="ChadPlanet" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 100, 0, 0 )
+[node name="Sun0" type="Spatial" parent="."]
+visible = false
 
-[node name="Spherball" type="CSGSphere" parent="ChadPlanet"]
+[node name="CSGSphere" type="CSGSphere" parent="Sun0"]
+material_override = ExtResource( 7 )
+cast_shadow = 2
+radius = 40.0
+radial_segments = 25
+rings = 25
+material = ExtResource( 6 )
+
+[node name="Sun2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -45, 0 )
+
+[node name="CSGSphere" type="CSGSphere" parent="Sun2"]
+material_override = ExtResource( 7 )
+cast_shadow = 2
+radius = 30.0
+radial_segments = 25
+rings = 25
+material = ExtResource( 6 )
+
+[node name="Planet1" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 0, 200 )
+
+[node name="CSGSphere" type="CSGSphere" parent="Planet1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280769, 0.843006, 1.42836 )
 material_override = SubResource( 2 )
-cast_shadow = 2
-radius = 15.0
+radius = 10.0
 radial_segments = 100
 rings = 100
 smooth_faces = false
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ChadPlanet/Spherball"]
+[node name="Planet2" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 0, 400 )
 
-[node name="GooberPlanet" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 0, 150 )
-
-[node name="CSGSphere" type="CSGSphere" parent="GooberPlanet"]
+[node name="CSGSphere" type="CSGSphere" parent="Planet2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280769, 0.843006, 1.42836 )
-material_override = SubResource( 4 )
-radius = 24.0
+material_override = SubResource( 2 )
+radius = 12.0
 radial_segments = 100
 rings = 100
 smooth_faces = false
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="GooberPlanet/CSGSphere"]
-stream = ExtResource( 5 )
-unit_size = 15.7
-autoplay = true
+[node name="Planet3" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 0, 800 )
+
+[node name="CSGSphere" type="CSGSphere" parent="Planet3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280769, 0.843006, 1.42836 )
+material_override = SubResource( 2 )
+radius = 20.0
+radial_segments = 100
+rings = 100
+smooth_faces = false
+
+[node name="Moon21" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 25, 0, 400 )
+
+[node name="CSGSphere" type="CSGSphere" parent="Moon21"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280769, 0.843006, 1.42836 )
+material_override = SubResource( 2 )
+radial_segments = 100
+rings = 100
+smooth_faces = false
+
+[node name="Moon31" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 40, 0, 800 )
+
+[node name="CSGSphere" type="CSGSphere" parent="Moon31"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280769, 0.843006, 1.42836 )
+material_override = SubResource( 2 )
+radius = 5.0
+radial_segments = 100
+rings = 100
+smooth_faces = false
+
+[node name="Moon32" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 50, 0, 800 )
+
+[node name="CSGSphere" type="CSGSphere" parent="Moon32"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280769, 0.843006, 1.42836 )
+material_override = SubResource( 2 )
+radius = 2.0
+radial_segments = 100
+rings = 100
+smooth_faces = false
+
+[node name="Moon33" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 55, 0, 800 )
+
+[node name="CSGSphere" type="CSGSphere" parent="Moon33"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280769, 0.843006, 1.42836 )
+material_override = SubResource( 2 )
+radius = 2.0
+radial_segments = 100
+rings = 100
+smooth_faces = false
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1.19249e-08, 0.707107, -0.707107, 0, 0.707107, 0.707107, 1, -8.43216e-09, 8.43216e-09, -150, 200, 0 )
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 200, 0 )
 environment = ExtResource( 3 )
 current = true
 far = 8192.0
