@@ -17,18 +17,14 @@ func centerOfMass():
 	return total/totalMass
 
 func _ready():
-	initDicks($Sun1,0,0,velCalc(250,45)/2,251)
-	initDicks($Sun2,0,0,-velCalc(250,45)/2,249)
-	initDicks($Planet1,velCalc(500,300),0,0,10)
-	initDicks($Planet2,velCalc(500,500),0,0,15)
+	initDicks($Sun0,0,0,0,500)
+	initDicks($Planet2,velCalc(500,400),0,0,15)
 	initDicks($Planet3,velCalc(500,800),0,0,30)
-	initDicks($Moon21,velCalc(500,500),0,-velCalc(15,25),.02)
+	initDicks($Moon21,velCalc(500,400),0,-velCalc(15,25),.002)
 	initDicks($Moon31,velCalc(500,800),0,-velCalc(30,30),.003)
 	initDicks($Moon32,velCalc(500,800),0,-velCalc(30,35),.001)
 	initDicks($Moon33,velCalc(500,800),0,-velCalc(30,40),.001)
-	initDicks($Asteroid1,0,0,velCalc(500,500)/1.5,.05)
-	initDicks($Asteroid2,0,0,-velCalc(500,700)/1.2,.05)
-	initDicks($Asteroid3,-velCalc(500,100)*1.2,0,0,.02)
+
 
 func _process(delta):
 	for planet in velocitiesDict.keys():

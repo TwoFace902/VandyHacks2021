@@ -33,6 +33,7 @@ script = ExtResource( 2 )
 
 [node name="Sun1" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 45, 0 )
+visible = false
 
 [node name="CSGSphere" type="CSGSphere" parent="Sun1"]
 material_override = ExtResource( 7 )
@@ -43,7 +44,6 @@ rings = 25
 material = ExtResource( 6 )
 
 [node name="Sun0" type="Spatial" parent="."]
-visible = false
 
 [node name="CSGSphere" type="CSGSphere" parent="Sun0"]
 material_override = ExtResource( 7 )
@@ -55,6 +55,7 @@ material = ExtResource( 6 )
 
 [node name="Sun2" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -45, 0 )
+visible = false
 
 [node name="CSGSphere" type="CSGSphere" parent="Sun2"]
 material_override = ExtResource( 7 )
@@ -66,6 +67,7 @@ material = ExtResource( 6 )
 
 [node name="Planet1" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 10, 300 )
+visible = false
 
 [node name="CSGSphere" type="CSGSphere" parent="Planet1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280769, 0.843006, 1.42836 )
@@ -76,7 +78,7 @@ rings = 100
 smooth_faces = false
 
 [node name="Planet2" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, -6, 500 )
+transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 0, 400 )
 
 [node name="CSGSphere" type="CSGSphere" parent="Planet2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280769, 0.843006, 1.42836 )
@@ -98,7 +100,7 @@ rings = 100
 smooth_faces = false
 
 [node name="Moon21" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 25, -6, 500 )
+transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 25, 0, 400 )
 
 [node name="CSGSphere" type="CSGSphere" parent="Moon21"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280769, 0.843006, 1.42836 )
@@ -108,7 +110,7 @@ rings = 100
 smooth_faces = false
 
 [node name="Moon31" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 30, 2, 800 )
+transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 30, 0, 800 )
 
 [node name="CSGSphere" type="CSGSphere" parent="Moon31"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280769, 0.843006, 1.42836 )
@@ -119,7 +121,7 @@ rings = 100
 smooth_faces = false
 
 [node name="Moon32" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 35, -2, 800 )
+transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 35, 0, 800 )
 
 [node name="CSGSphere" type="CSGSphere" parent="Moon32"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280769, 0.843006, 1.42836 )
@@ -142,6 +144,7 @@ smooth_faces = false
 
 [node name="Asteroid1" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, -500, 20, 0 )
+visible = false
 
 [node name="CSGSphere" type="CSGSphere" parent="Asteroid1"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280769, 0.843006, 1.42836 )
@@ -153,6 +156,7 @@ smooth_faces = false
 
 [node name="Asteroid2" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 700, 40, 0 )
+visible = false
 
 [node name="CSGSphere" type="CSGSphere" parent="Asteroid2"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280769, 0.843006, 1.42836 )
@@ -164,6 +168,7 @@ smooth_faces = false
 
 [node name="Asteroid3" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.642788, -0.766044, 0, 0.766044, 0.642788, 0, 0, -100 )
+visible = false
 
 [node name="CSGSphere" type="CSGSphere" parent="Asteroid3"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.280769, 0.843006, 1.42836 )
