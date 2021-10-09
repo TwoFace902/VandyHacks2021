@@ -19,20 +19,23 @@ func centerOfMass():
 func _ready():
 	initDicks($Sun1,0,0,velCalc(250,45)/2,251)
 	initDicks($Sun2,0,0,-velCalc(250,45)/2,249)
-	initDicks($Planet1,velCalc(500,200),0,0,10)
-	initDicks($Planet2,velCalc(500,400),0,0,15)
+	initDicks($Planet1,velCalc(500,300),0,0,10)
+	initDicks($Planet2,velCalc(500,500),0,0,15)
 	initDicks($Planet3,velCalc(500,800),0,0,30)
-	initDicks($Moon21,velCalc(500,400),0,velCalc(15,25),.2)
-	initDicks($Moon31,velCalc(500,800),0,velCalc(30,40),.03)
-	initDicks($Moon32,velCalc(500,800),0,velCalc(30,50),.01)
-	initDicks($Moon33,velCalc(500,800),0,velCalc(30,55),.01)
+	initDicks($Moon21,velCalc(500,500),0,-velCalc(15,25),.02)
+	initDicks($Moon31,velCalc(500,800),0,-velCalc(30,30),.003)
+	initDicks($Moon32,velCalc(500,800),0,-velCalc(30,35),.001)
+	initDicks($Moon33,velCalc(500,800),0,-velCalc(30,40),.001)
+	initDicks($Asteroid1,0,0,velCalc(500,500)/1.5,.05)
+	initDicks($Asteroid2,0,0,-velCalc(500,700)/1.2,.05)
+	initDicks($Asteroid3,-velCalc(500,100)*1.2,0,0,.02)
 
 func _process(delta):
 	for planet in velocitiesDict.keys():
 		for planet2 in velocitiesDict.keys():
-			fuckYou(planet,planet2, delta)
+			fuckYou(planet,planet2, .02)
 	for planet in velocitiesDict.keys():
-		planet.translation += velocitiesDict[planet]*delta
+		planet.translation += velocitiesDict[planet]*.02
 	$Camera.translation = centerOfMass()
 	$Camera.translation.y += 1600
 	#$Camera.translation.x -= 250
