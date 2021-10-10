@@ -6,27 +6,32 @@ var velocitiesDict = {}
 var massDict = {}
 
 func _ready():
-	initDict($Sun,0,0,0,500)
-	initDict($Planet2,velCalc(500,400),0,0,15)
+	initDict($Sun1,0,0,velCalc(250,45)/2,251)
+	initDict($Sun2,0,0,-velCalc(250,45)/2,249)
+	initDict($Planet1,velCalc(500,300),0,0,10)
+	initDict($Planet2,velCalc(500,500),0,0,15)
 	initDict($Planet3,velCalc(500,800),0,0,30)
-	initDict($Moon21,velCalc(500,400),0,-velCalc(15,25),.002)
-	initDict($Moon31,velCalc(500,800),0,-velCalc(30,30),.003)
-	initDict($Moon32,velCalc(500,800),0,-velCalc(30,35),.001)
-	initDict($Moon33,velCalc(500,800),0,-velCalc(30,40),.001)
+	initDict($Moon21,velCalc(500,500),0,-velCalc(15,25),.2)
+	initDict($Moon31,velCalc(500,800),0,-velCalc(30,30),.03)
+	initDict($Moon32,velCalc(500,800),0,-velCalc(30,35),.01)
+	initDict($Moon33,velCalc(500,800),0,-velCalc(30,40),.01)
+	initDict($Asteroid1,0,0,velCalc(500,500)/1.5,.1)
+	initDict($Asteroid2,0,0,-velCalc(500,700)/1.2,.1)
+	initDict($Asteroid3,-velCalc(500,100)*1.2,0,0,.2)
 
 func _process(delta):
+	$Trajectory.translation = centerOfMass()
 	for planet in velocitiesDict.keys():
 		for planet2 in velocitiesDict.keys():
-			calcVel(planet,planet2, 0.005)
+			calcVel(planet,planet2, 0.01)
 	for planet in velocitiesDict.keys():
-		planet.translation += velocitiesDict[planet]*0.005
-		if(ticFrame%150 == 0):
+		planet.translation += velocitiesDict[planet]*0.01
+		if(ticFrame%70 == 0):
 			$Trajectory.createTraject(planet.translation)
 		planet.rotation.y += delta
-	$Trajectory.translation = $Sun.translation
 	$Camera.translation = centerOfMass()
 	#$Camera.rotation.x += 0.01
-	$Camera.translation.y +=1600
+	$Camera.translation.y +=1300
 	#$Camera.translation.x -= 150
 	#$Camera.rotation = $GooberPlanet.rotation
 	#$Camera.rotation.y += 180

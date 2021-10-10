@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://SpatialStable.gd" type="Script" id=1]
-[ext_resource path="res://TrajectoryBig.gd" type="Script" id=2]
-[ext_resource path="res://TrajectKidBig.tscn" type="PackedScene" id=3]
+[ext_resource path="res://SpatialTwoSuns.gd" type="Script" id=1]
+[ext_resource path="res://TrajectKidBig.tscn" type="PackedScene" id=2]
+[ext_resource path="res://TrajectoryBig.gd" type="Script" id=3]
 [ext_resource path="res://Space.tres" type="Environment" id=5]
 [ext_resource path="res://sunlol.tres" type="Material" id=6]
 [ext_resource path="res://Sun.tres" type="Material" id=7]
@@ -44,17 +44,27 @@ script = ExtResource( 1 )
 
 [node name="Sun1" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 45, 0 )
-visible = false
 
 [node name="CSGSphere" type="CSGSphere" parent="Sun1"]
 material_override = ExtResource( 7 )
-cast_shadow = 2
+cast_shadow = 0
 radius = 40.0
 radial_segments = 25
 rings = 25
 material = ExtResource( 6 )
 
+[node name="OmniLight" type="OmniLight" parent="Sun1"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -45, 0 )
+light_energy = 1.5
+light_indirect_energy = 1.5
+light_specular = 0.0
+light_bake_mode = 0
+shadow_enabled = true
+omni_range = 2000.0
+omni_attenuation = -2.0
+
 [node name="Sun" type="Spatial" parent="."]
+visible = false
 
 [node name="CSGSphere" type="CSGSphere" parent="Sun"]
 material_override = ExtResource( 7 )
@@ -75,19 +85,27 @@ omni_attenuation = -2.0
 
 [node name="Sun2" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -45, 0 )
-visible = false
 
 [node name="CSGSphere" type="CSGSphere" parent="Sun2"]
 material_override = ExtResource( 7 )
-cast_shadow = 2
+cast_shadow = 0
 radius = 30.0
 radial_segments = 25
 rings = 25
 material = ExtResource( 6 )
 
+[node name="OmniLight" type="OmniLight" parent="Sun2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 45, 0 )
+light_energy = 1.5
+light_indirect_energy = 1.5
+light_specular = 0.0
+light_bake_mode = 0
+shadow_enabled = true
+omni_range = 2000.0
+omni_attenuation = -2.0
+
 [node name="Planet1" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 300 )
-visible = false
 
 [node name="CSGSphere" type="CSGSphere" parent="Planet1"]
 material_override = SubResource( 2 )
@@ -97,7 +115,7 @@ rings = 100
 smooth_faces = false
 
 [node name="Planet2" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 400 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 500 )
 
 [node name="CSGSphere" type="CSGSphere" parent="Planet2"]
 material_override = SubResource( 2 )
@@ -118,7 +136,7 @@ rings = 100
 smooth_faces = false
 
 [node name="Moon21" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 400 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 500 )
 
 [node name="CSGSphere" type="CSGSphere" parent="Moon21"]
 material_override = SubResource( 2 )
@@ -159,7 +177,6 @@ smooth_faces = false
 
 [node name="Asteroid1" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -500, 20, 0 )
-visible = false
 
 [node name="CSGSphere" type="CSGSphere" parent="Asteroid1"]
 material_override = SubResource( 2 )
@@ -170,7 +187,6 @@ smooth_faces = false
 
 [node name="Asteroid2" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 700, 40, 0 )
-visible = false
 
 [node name="CSGSphere" type="CSGSphere" parent="Asteroid2"]
 material_override = SubResource( 2 )
@@ -181,7 +197,6 @@ smooth_faces = false
 
 [node name="Asteroid3" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -100 )
-visible = false
 
 [node name="CSGSphere" type="CSGSphere" parent="Asteroid3"]
 material_override = SubResource( 2 )
@@ -200,7 +215,7 @@ far = 8192.0
 environment = ExtResource( 5 )
 
 [node name="Trajectory" type="Spatial" parent="."]
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
-[node name="TrajectKid" parent="Trajectory" instance=ExtResource( 3 )]
+[node name="TrajectKid" parent="Trajectory" instance=ExtResource( 2 )]
 material = SubResource( 3 )
