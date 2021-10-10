@@ -9,7 +9,6 @@ onready var currentPlanet = $DefaultCam
 var reallySmallMass = 0.000000000001
 
 func _ready():
-	
 	OS.window_borderless = true
 	$CamSpat/Camera.fov = 1
 	initDict($Sun,0,0,0,500)
@@ -17,7 +16,8 @@ func _ready():
 	initDict($MoonPog,-40,40,velCalc(25,15),reallySmallMass)
 	initDict($ChadPlanet,0,-30,30,12)
 	initDict($SuperMoon,velCalc(12,15),-30,30,reallySmallMass)
-	initDict($Supergoober,30,0,-30,16)
+	initDict($Supergoober,30,0,-30,35)
+	initDict($BigBoyMoon,30,velCalc(35,25),-30,reallySmallMass)
 	initDict($DefaultCam,velCalc(500,350),0,0,reallySmallMass)
 
 func _process(delta):

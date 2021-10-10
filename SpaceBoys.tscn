@@ -2,19 +2,20 @@
 
 [ext_resource path="res://Music/Piano.mp3" type="AudioStream" id=1]
 [ext_resource path="res://Spatial.gd" type="Script" id=2]
-[ext_resource path="res://TrajectKid.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Trajectory.tscn" type="PackedScene" id=3]
 [ext_resource path="res://SpaceImg.jpg" type="Texture" id=4]
 [ext_resource path="res://Music/Harmonica.mp3" type="AudioStream" id=5]
 [ext_resource path="res://sunlol.tres" type="Material" id=6]
 [ext_resource path="res://Sun.tres" type="Material" id=7]
 [ext_resource path="res://Music/Banjo.mp3" type="AudioStream" id=8]
 [ext_resource path="res://8k_moon.jpg" type="Texture" id=9]
-[ext_resource path="res://Space.tres" type="Environment" id=10]
-[ext_resource path="res://Trajectory.gd" type="Script" id=11]
+[ext_resource path="res://DefaultCamera.tscn" type="PackedScene" id=10]
+[ext_resource path="res://SpatialCam.tscn" type="PackedScene" id=11]
 [ext_resource path="res://8k_mars.jpg" type="Texture" id=12]
 [ext_resource path="res://Music/Drums.mp3" type="AudioStream" id=13]
 [ext_resource path="res://Music/Flute.mp3" type="AudioStream" id=14]
 [ext_resource path="res://Music/Theremin.mp3" type="AudioStream" id=15]
+[ext_resource path="res://Music/Whistle.mp3" type="AudioStream" id=16]
 
 [sub_resource type="SpatialMaterial" id=1]
 params_line_width = 0.1
@@ -73,14 +74,9 @@ uv1_triplanar = true
 uv1_triplanar_sharpness = 14.3587
 
 [sub_resource type="SpatialMaterial" id=6]
-flags_unshaded = true
-flags_do_not_receive_shadows = true
-flags_disable_ambient_light = true
-
-[sub_resource type="SpatialMaterial" id=7]
 params_line_width = 0.1
 params_point_size = 18.6
-albedo_color = Color( 0.431373, 0.376471, 1, 1 )
+albedo_color = Color( 0.717647, 0.388235, 0.207843, 1 )
 albedo_texture = ExtResource( 9 )
 emission_enabled = true
 emission = Color( 0, 0, 0, 1 )
@@ -200,34 +196,35 @@ unit_size = 15.0
 max_db = 1.0
 autoplay = true
 
-[node name="Trajectory" type="Spatial" parent="."]
-script = ExtResource( 11 )
+[node name="Trajectory" parent="." instance=ExtResource( 3 )]
 
-[node name="TrajectKid" parent="Trajectory" instance=ExtResource( 3 )]
-visible = false
-generate_lightmap = false
+[node name="DefaultCam" parent="." instance=ExtResource( 10 )]
+
+[node name="CamSpat" parent="." instance=ExtResource( 11 )]
+
+[node name="BigBoyMoon" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -200, 25 )
+
+[node name="CSGSphere" type="CSGSphere" parent="BigBoyMoon"]
+material_override = SubResource( 6 )
+cast_shadow = 2
 radius = 2.0
-material = SubResource( 6 )
+radial_segments = 100
+rings = 100
+smooth_faces = false
 
-[node name="DefaultCam" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 350, 0 )
-
-[node name="CamSpat" type="Spatial" parent="."]
-
-[node name="Camera" type="Camera" parent="CamSpat"]
-environment = ExtResource( 10 )
-current = true
-fov = 1.0
-far = 8192.0
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="CamSpat/Camera"]
-environment = ExtResource( 10 )
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="BigBoyMoon/CSGSphere"]
+stream = ExtResource( 16 )
+unit_db = 5.0
+unit_size = 15.0
+max_db = 1.0
+autoplay = true
 
 [node name="SuperMoon" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 15 )
 
 [node name="CSGSphere" type="CSGSphere" parent="SuperMoon"]
-material_override = SubResource( 7 )
+material_override = SubResource( 6 )
 cast_shadow = 2
 radius = 2.0
 radial_segments = 100

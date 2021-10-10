@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Space.tres" type="Environment" id=1]
+
+[node name="CamSpat" type="Spatial"]
+
+[node name="Camera" type="Camera" parent="."]
+environment = ExtResource( 1 )
+current = true
+fov = 1.0
+far = 8192.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Camera"]
+environment = ExtResource( 1 )

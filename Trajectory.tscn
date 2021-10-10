@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://TrajectKid.tscn" type="PackedScene" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Spatial
+
+var shape = null
+
+func _ready():
+	pass
+
+func createTraject(curToMake):
+	var new_shape_scene = load(\"res://TrajectKid.tscn\")
+	shape = new_shape_scene.instance()
+	shape.translation = curToMake - translation
+	add_child(shape)
+"
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+flags_disable_ambient_light = true
+
+[node name="Trajectory" type="Spatial"]
+script = SubResource( 1 )
+
+[node name="TrajectKid" parent="." instance=ExtResource( 1 )]
+visible = false
+generate_lightmap = false
+radius = 2.0
+material = SubResource( 2 )
