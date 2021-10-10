@@ -1,6 +1,7 @@
 extends CSGSphere
 
-var lifetime = 30
+var lifeStart = 30
+var lifetime = lifeStart
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,12 +10,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	lifetime -= delta
-	if (lifetime <= 29.75 and lifetime >= 29.5):
+	if (lifetime <= (lifeStart - .25) and lifetime >= (lifeStart - .5)):
 		visible = true
-		var timeAlongProcess = 29.75 - lifetime
+		var timeAlongProcess = (lifeStart - .25) - lifetime
 		var toWhite = timeAlongProcess/.25
 		material.albedo_color = Color(toWhite,toWhite,toWhite,255)
-	elif (lifetime > 0.25 and lifetime < 29.5):
+	elif (lifetime > 0.25 and lifetime < (lifeStart - .5)):
 		material.albedo_color = Color(1,1,1,255)
 	elif (lifetime <= 0.25):
 		var toBlack = lifetime/0.25

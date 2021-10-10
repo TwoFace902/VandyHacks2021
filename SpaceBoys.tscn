@@ -48,7 +48,7 @@ uv1_scale = Vector3( 0.01, 2, 1 )
 uv1_offset = Vector3( -0.066, -0.641, -0.619 )
 uv1_triplanar_sharpness = 14.3587
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=5]
 params_line_width = 0.1
 params_point_size = 18.6
 albedo_texture = ExtResource( 9 )
@@ -66,7 +66,7 @@ uv1_offset = Vector3( -0.037, 0.132, 0 )
 uv1_triplanar = true
 uv1_triplanar_sharpness = 14.3587
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=6]
 flags_unshaded = true
 flags_do_not_receive_shadows = true
 flags_disable_ambient_light = true
@@ -167,7 +167,7 @@ max_distance = 200.0
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 150 )
 
 [node name="CSGSphere" type="CSGSphere" parent="MoonPog"]
-material_override = SubResource( 6 )
+material_override = SubResource( 5 )
 cast_shadow = 2
 radius = 2.0
 radial_segments = 100
@@ -187,7 +187,7 @@ script = ExtResource( 11 )
 visible = false
 generate_lightmap = false
 radius = 2.0
-material = SubResource( 5 )
+material = SubResource( 6 )
 
 [node name="DefaultCam" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 350, 0 )
