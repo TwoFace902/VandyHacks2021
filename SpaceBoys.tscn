@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Music/Piano.mp3" type="AudioStream" id=1]
 [ext_resource path="res://Spatial.gd" type="Script" id=2]
@@ -77,6 +77,25 @@ uv1_triplanar_sharpness = 14.3587
 params_line_width = 0.1
 params_point_size = 18.6
 albedo_color = Color( 0.717647, 0.388235, 0.207843, 1 )
+albedo_texture = ExtResource( 9 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+ao_enabled = true
+ao_light_affect = 0.0
+ao_on_uv2 = false
+ao_texture_channel = 0
+uv1_scale = Vector3( 0.1, 0.1, 0.1 )
+uv1_offset = Vector3( -0.037, 0.132, 0 )
+uv1_triplanar = true
+uv1_triplanar_sharpness = 14.3587
+
+[sub_resource type="SpatialMaterial" id=7]
+params_line_width = 0.1
+params_point_size = 18.6
+albedo_color = Color( 0.341176, 0.282353, 0.85098, 1 )
 albedo_texture = ExtResource( 9 )
 emission_enabled = true
 emission = Color( 0, 0, 0, 1 )
@@ -224,7 +243,7 @@ autoplay = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 15 )
 
 [node name="CSGSphere" type="CSGSphere" parent="SuperMoon"]
-material_override = SubResource( 6 )
+material_override = SubResource( 7 )
 cast_shadow = 2
 radius = 2.0
 radial_segments = 100
