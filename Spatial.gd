@@ -2,6 +2,7 @@ extends Spatial
 
 var dying = false
 var played = false
+var normalFOV
 var ticFrame = 0
 var deathFrame = 0
 var G = 1000
@@ -27,6 +28,7 @@ func _process(delta):
 	if(($CamSpat/Camera.fov < 70) && (!dying)):
 		$CamSpat/Camera.fov = 1.5 + 70*(1/(1+exp(- (0.05)*(ticFrame-60) + 6)))
 	elif(!played):
+		normalFOV = $CamSpat/Camera.fov
 		startMusic($Sun/CSGSphere/AudioStreamPlayer3D)
 		for planet in objects:
 			startMusic(planet.get_node("CSGSphere/AudioStreamPlayer3D"))
@@ -124,8 +126,8 @@ func stopVelocity(): #For demo. Shows the death of planets.
 
 func zoomIn():
 	deathFrame += 1
-	$CamSpat/Camera.fov = 70 - 70*(1/(1+exp(- (0.05)*(deathFrame) + 6)))
-	if(($CamSpat/Camera.fov < 1.1)):
+	$CamSpat/Camera.fov = normalFOV - 70*(1/(1+exp(- (0.05)*(deathFrame) + 6)))
+	if(($CamSpat/Camera.fov <= 1.5)):
 		reset()
 
 func reset():
