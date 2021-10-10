@@ -1,0 +1,1 @@
+uniform texture diff; uniform float a = 1.0; DIFFUSE_ALPHA = vec4 (tex(diff, UV).rgb, a);

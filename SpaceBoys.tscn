@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Sun.gd" type="Script" id=1]
 [ext_resource path="res://Spatial.gd" type="Script" id=2]
+[ext_resource path="res://TrajectKid.tscn" type="PackedScene" id=3]
 [ext_resource path="res://pogman.png" type="Texture" id=4]
 [ext_resource path="res://Volume Alpha 19. Cat.mp3" type="AudioStream" id=5]
 [ext_resource path="res://sunlol.tres" type="Material" id=6]
@@ -9,6 +10,7 @@
 [ext_resource path="res://04. Space.mp3" type="AudioStream" id=8]
 [ext_resource path="res://Sneed.png" type="Texture" id=9]
 [ext_resource path="res://Space.tres" type="Environment" id=10]
+[ext_resource path="res://Trajectory.gd" type="Script" id=11]
 
 [sub_resource type="SpatialMaterial" id=1]
 params_specular_mode = 2
@@ -31,7 +33,6 @@ uv1_triplanar_sharpness = 14.3587
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_texture = ExtResource( 4 )
-uv1_scale = Vector3( 0.1, 0.1, 0.1 )
 uv1_triplanar = true
 
 [sub_resource type="StreamTexture" id=3]
@@ -56,6 +57,11 @@ ao_texture_channel = 0
 uv1_scale = Vector3( 0.01, 2, 1 )
 uv1_offset = Vector3( -0.066, -0.641, -0.619 )
 uv1_triplanar_sharpness = 14.3587
+
+[sub_resource type="SpatialMaterial" id=5]
+flags_unshaded = true
+flags_do_not_receive_shadows = true
+flags_disable_ambient_light = true
 
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 2 )
@@ -96,8 +102,7 @@ smooth_faces = false
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Supergoober/CSGSphere"]
 stream = ExtResource( 8 )
-unit_db = -7.0
-unit_size = 5.0
+unit_size = 12.0
 autoplay = true
 
 [node name="ChadPlanet" type="Spatial" parent="."]
@@ -156,3 +161,27 @@ stream = ExtResource( 5 )
 unit_db = -4.0
 unit_size = 2.0
 max_distance = 200.0
+
+[node name="Trajectory" type="Spatial" parent="."]
+script = ExtResource( 11 )
+
+[node name="TrajectKid" parent="Trajectory" instance=ExtResource( 3 )]
+generate_lightmap = false
+radius = 2.0
+material = SubResource( 5 )
+
+[node name="Le funny camera" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 200, 0 )
+
+[node name="CSGSphere" type="CSGSphere" parent="Le funny camera"]
+material_override = SubResource( 1 )
+cast_shadow = 2
+radius = 16.0
+radial_segments = 100
+rings = 100
+smooth_faces = false
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Le funny camera/CSGSphere"]
+stream = ExtResource( 8 )
+unit_size = 12.0
+autoplay = true

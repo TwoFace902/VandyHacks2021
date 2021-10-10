@@ -1,39 +1,42 @@
 extends Spatial
 
+var ticFrame = 0
 var G = 1000
 var velocitiesDict = {}
 var massDict = {}
 
 func _ready():
-	initDicks($Sun,0,0,0,500)
-	initDicks($GooberPlanet,-40,40,0,25)
-	initDicks($MoonPog,-40,40,sqrt(G*25/15),0.000000000001)
-	initDicks($ChadPlanet,0,-30,30,12)
-	initDicks($Supergoober,30,2,30,16)
+	initDict($Sun,0,0,0,500)
+	initDict($GooberPlanet,-40,40,0,25)
+	initDict($MoonPog,-40,40,sqrt(G*25/15),0.000000000001)
+	initDict($ChadPlanet,0,-30,30,12)
+	initDict($Supergoober,30,2,30,16)
 	print($Sun.get_children()[0].radius)
 
 func _process(delta):
 	for planet in velocitiesDict.keys():
 		for planet2 in velocitiesDict.keys():
-			fuckYou(planet,planet2, 0.01)
+			calcVel(planet,planet2, 0.005)
 	for planet in velocitiesDict.keys():
-		planet.translation += velocitiesDict[planet]*0.01
-		planet.rotation.x += delta
-	$Camera.translation = $Sun.translation
-	$Camera.translation.y += 350
+		planet.translation += velocitiesDict[planet]*0.005
+		if(ticFrame%30 == 0):
+			$Trajectory.createTraject(planet.translation)
+		planet.rotation.y += delta
+	$Trajectory.translation = $Sun.translation
+	$Camera.translation = centerOfMass()
+	#$Camera.rotation.x += 0.01
+	$Camera.translation.y +=350
 	#$Camera.translation.x -= 150
 	#$Camera.rotation = $GooberPlanet.rotation
 	#$Camera.rotation.y += 180
+	ticFrame += 1
 	checkAllCollisions()
-	
-	
-	
 
-func initDicks(planet,x,y,z,mass):
+func initDict(planet,x,y,z,mass):
 	velocitiesDict[planet] = Vector3(x,y,z)
 	massDict[planet] = mass
 	
-func fuckYou(thisPlanet, otherPlanet, delta):
+func calcVel(thisPlanet, otherPlanet, delta):
 	if(thisPlanet == otherPlanet):
 		return
 	var diff = otherPlanet.translation-thisPlanet.translation
@@ -71,3 +74,14 @@ func checkCollisions(thisPlanet,otherPlanet):
 		massDict.erase(planetToKill)
 		velocitiesDict.erase(planetToKill)
 		planetToKill.queue_free()
+
+func velCalc(M,r):
+	return sqrt(G*M/r)
+
+func centerOfMass():
+	var total = Vector3()
+	var totalMass = 0
+	for planet in velocitiesDict.keys():
+		total += planet.translation*massDict[planet]
+		totalMass += massDict[planet]
+	return total/totalMass
