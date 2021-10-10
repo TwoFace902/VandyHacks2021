@@ -129,7 +129,7 @@ omni_range = 1000.0
 omni_attenuation = 2.0
 
 [node name="Supergoober" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 200, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -200, 0 )
 
 [node name="CSGSphere" type="CSGSphere" parent="Supergoober"]
 material_override = SubResource( 1 )

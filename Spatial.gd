@@ -22,7 +22,7 @@ func _ready():
 
 func _process(delta):
 	if($CamSpat/Camera.fov <= 70):
-		$CamSpat/Camera.fov = 1 + 70*(1/(1+exp(- (0.05)*(ticFrame-60) + 7)))
+		$CamSpat/Camera.fov = 70*(1/(1+exp(- (0.05)*(ticFrame-60) + 6)))
 	for planet in velocitiesDict.keys():
 		for planet2 in velocitiesDict.keys():
 			calcVel(planet,planet2, 0.005)
@@ -108,8 +108,19 @@ func prevPlanet():
 	currentPlanet = objects[(objects.find(currentPlanet,0) - 1)%objects.size()]
 	currentPlanet.visible = false
 	
+func stopVelocity(): #For demo. Shows the death of planets.
+	if(currentPlanet != $DefaultCam):
+		velocitiesDict[currentPlanet] = Vector3(0,0,0)
+		
+func reset():
+	get_tree().reload_current_scene()
+
 func _input(ev):
 	if Input.is_action_just_pressed("ui_right"):
 		nextPlanet()
 	if Input.is_action_just_pressed("ui_left"):
 		prevPlanet()
+	if Input.is_action_just_pressed("ui_select"):
+		stopVelocity()
+	if Input.is_action_just_pressed("ui_cancel"):
+		reset()

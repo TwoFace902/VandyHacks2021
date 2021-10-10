@@ -3,12 +3,13 @@
 [ext_resource path="res://Mf uhh sun.jpg" type="Texture" id=2]
 
 [resource]
+params_cull_mode = 2
+albedo_color = Color( 0.623529, 0.623529, 0.623529, 1 )
 albedo_texture = ExtResource( 2 )
 emission_enabled = true
 emission = Color( 1, 1, 0, 1 )
 emission_energy = 1.0
 emission_operator = 0
 emission_on_uv2 = false
-uv1_scale = Vector3( 0.1, 0.1, 0.1 )
-uv1_offset = Vector3( 0.359, 0.416, 0.092 )
-uv1_triplanar = true
+uv1_scale = Vector3( -0.016, 0.023, 0.177 )
+uv1_offset = Vector3( 0.343, 0.429, 0.054 )
