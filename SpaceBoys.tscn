@@ -133,7 +133,7 @@ rings = 100
 smooth_faces = false
 
 [node name="ChadPlanet" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 200, 0, 0 )
 
 [node name="CSGSphere" type="CSGSphere" parent="ChadPlanet"]
 material_override = SubResource( 2 )
