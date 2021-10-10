@@ -10,9 +10,16 @@ config_version=4
 
 [application]
 
-config/name="Sneedery"
+config/name="SpaceSim"
 run/main_scene="res://SpaceBoys.tscn"
-config/icon="res://icon.png"
+config/icon="res://pe today.png"
+
+[display]
+
+window/size/width=2560
+window/size/height=1440
+window/size/resizable=false
+window/size/borderless=true
 
 [physics]
 

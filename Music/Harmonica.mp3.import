@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Harmonica.mp3-48dbb4313b2c660f444704aa45d8ac41.mp3str"
+
+[deps]
+
+source_file="res://Music/Harmonica.mp3"
+dest_files=[ "res://.import/Harmonica.mp3-48dbb4313b2c660f444704aa45d8ac41.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -9,18 +9,20 @@ onready var currentPlanet = $DefaultCam
 var reallySmallMass = 0.000000000001
 
 func _ready():
+	
+	OS.window_borderless = true
 	$CamSpat/Camera.fov = 1
 	initDict($Sun,0,0,0,500)
 	initDict($GooberPlanet,-40,40,0,25)
 	initDict($MoonPog,-40,40,velCalc(25,15),reallySmallMass)
 	initDict($ChadPlanet,0,-30,30,12)
 	initDict($SuperMoon,velCalc(12,15),-30,30,reallySmallMass)
-	initDict($Supergoober,30,2,30,16)
+	initDict($Supergoober,30,0,-30,16)
 	initDict($DefaultCam,velCalc(500,350),0,0,reallySmallMass)
 
 func _process(delta):
 	if($CamSpat/Camera.fov <= 70):
-		$CamSpat/Camera.fov += 0.5
+		$CamSpat/Camera.fov = 1 + 70*(1/(1+exp(- (0.05)*(ticFrame-60) + 7)))
 	for planet in velocitiesDict.keys():
 		for planet2 in velocitiesDict.keys():
 			calcVel(planet,planet2, 0.005)
@@ -29,10 +31,9 @@ func _process(delta):
 		planet.rotation.y += delta
 		if(ticFrame%30 == 0 && planet != $Sun && planet != $DefaultCam):
 			$Trajectory.createTraject(planet.translation)
-		else :
-			var looking = (currentPlanet.translation - $Sun.translation).normalized()
-			$CamSpat.translation = currentPlanet.translation
-			$CamSpat.look_at($Sun.translation,Vector3(0,0,1))
+	#$CamSpat.translation = currentPlanet.translation #If we want instant transition. This other one is cooler.
+	$CamSpat.translation += (0.1)*(currentPlanet.translation - $CamSpat.translation)
+	$CamSpat.look_at($Sun.translation,Vector3(1,1,1))
 	$Trajectory.translation = $Sun.translation
 	ticFrame += 1
 	checkAllCollisions()
@@ -44,7 +45,7 @@ func initDict(planet,x,y,z,mass):
 		objects.push_back(planet)
 	
 func calcVel(thisPlanet, otherPlanet, delta):
-	if(thisPlanet == otherPlanet):
+	if((thisPlanet == otherPlanet) || (thisPlanet == $Sun)):
 		return
 	var diff = otherPlanet.translation-thisPlanet.translation
 	var distance = diff.length_squared()

@@ -1,15 +1,9 @@
-
-
-3.Add more planets (should we)
-
-
-
-(Good) ???. MAKE A MOON FUCKING POG
-(Done) 5.Add shit that happens when stuff collides
+(Good) ???. MAKE A MOON
+(Done) 5.Add stuff collides
 (Done) 2.Add background
 (done) ?ultimate?.Add trajectory rings (how?)
 (DONE DONE DONE) 3.Add rotations
-7.Math find good orbits?
-last.Add player shit (sorta did)
+7.Math find good orbits? (stable version)
+last.Add player (sorta did)
 (yeah) 1.Better skybox
 2.Cool planet textures

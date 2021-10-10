@@ -1,16 +1,20 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=23 format=2]
 
+[ext_resource path="res://Music/Piano.mp3" type="AudioStream" id=1]
 [ext_resource path="res://Spatial.gd" type="Script" id=2]
 [ext_resource path="res://TrajectKid.tscn" type="PackedScene" id=3]
 [ext_resource path="res://SpaceImg.jpg" type="Texture" id=4]
-[ext_resource path="res://Volume Alpha 19. Cat.mp3" type="AudioStream" id=5]
+[ext_resource path="res://Music/Harmonica.mp3" type="AudioStream" id=5]
 [ext_resource path="res://sunlol.tres" type="Material" id=6]
 [ext_resource path="res://Sun.tres" type="Material" id=7]
-[ext_resource path="res://04. Space.mp3" type="AudioStream" id=8]
+[ext_resource path="res://Music/Banjo.mp3" type="AudioStream" id=8]
 [ext_resource path="res://8k_moon.jpg" type="Texture" id=9]
 [ext_resource path="res://Space.tres" type="Environment" id=10]
 [ext_resource path="res://Trajectory.gd" type="Script" id=11]
 [ext_resource path="res://8k_mars.jpg" type="Texture" id=12]
+[ext_resource path="res://Music/Drums.mp3" type="AudioStream" id=13]
+[ext_resource path="res://Music/Flute.mp3" type="AudioStream" id=14]
+[ext_resource path="res://Music/Theremin.mp3" type="AudioStream" id=15]
 
 [sub_resource type="SpatialMaterial" id=1]
 params_line_width = 0.1
@@ -22,7 +26,9 @@ uv1_triplanar = true
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_texture = ExtResource( 4 )
-uv1_scale = Vector3( 1, 0.5, 1 )
+uv1_scale = Vector3( 0.05, 0.05, 0.05 )
+uv1_offset = Vector3( -0.394, -1.57, -0.441 )
+uv1_triplanar = true
 uv1_triplanar_sharpness = 1.31951
 
 [sub_resource type="StreamTexture" id=3]
@@ -95,12 +101,6 @@ script = ExtResource( 2 )
 
 [node name="Sun" type="Spatial" parent="."]
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Sun"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 200, 0 )
-stream = ExtResource( 8 )
-unit_size = 12.0
-autoplay = true
-
 [node name="CSGSphere" type="CSGSphere" parent="Sun"]
 material_override = ExtResource( 7 )
 cast_shadow = 0
@@ -108,6 +108,13 @@ radius = 40.0
 radial_segments = 25
 rings = 25
 material = ExtResource( 6 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Sun/CSGSphere"]
+stream = ExtResource( 8 )
+unit_db = 5.0
+unit_size = 25.0
+max_db = 2.0
+autoplay = true
 
 [node name="OmniLight" type="OmniLight" parent="Sun"]
 light_energy = 1.5
@@ -132,6 +139,13 @@ radial_segments = 100
 rings = 100
 smooth_faces = false
 
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Supergoober/CSGSphere"]
+stream = ExtResource( 13 )
+unit_db = 5.0
+unit_size = 15.0
+max_db = 1.0
+autoplay = true
+
 [node name="ChadPlanet" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 200, 0, 0 )
 
@@ -144,6 +158,10 @@ rings = 100
 smooth_faces = false
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ChadPlanet/CSGSphere"]
+stream = ExtResource( 14 )
+unit_db = 5.0
+unit_size = 15.0
+max_db = 1.0
 autoplay = true
 
 [node name="GooberPlanet" type="Spatial" parent="."]
@@ -158,10 +176,11 @@ rings = 100
 smooth_faces = false
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="GooberPlanet/CSGSphere"]
-stream = ExtResource( 5 )
-unit_db = -4.0
-unit_size = 2.0
-max_distance = 200.0
+stream = ExtResource( 1 )
+unit_db = 5.0
+unit_size = 15.0
+max_db = 1.0
+autoplay = true
 
 [node name="MoonPog" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 150 )
@@ -175,10 +194,11 @@ rings = 100
 smooth_faces = false
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="MoonPog/CSGSphere"]
-stream = ExtResource( 5 )
-unit_db = -4.0
-unit_size = 2.0
-max_distance = 200.0
+stream = ExtResource( 15 )
+unit_db = 5.0
+unit_size = 15.0
+max_db = 1.0
+autoplay = true
 
 [node name="Trajectory" type="Spatial" parent="."]
 script = ExtResource( 11 )
@@ -216,6 +236,7 @@ smooth_faces = false
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SuperMoon/CSGSphere"]
 stream = ExtResource( 5 )
-unit_db = -4.0
-unit_size = 2.0
-max_distance = 200.0
+unit_db = 5.0
+unit_size = 15.0
+max_db = 1.0
+autoplay = true
