@@ -1,6 +1,9 @@
 extends Spatial
 
+var dying = false
+var played = false
 var ticFrame = 0
+var deathFrame = 0
 var G = 1000
 var velocitiesDict = {}
 var massDict = {}
@@ -10,7 +13,7 @@ var reallySmallMass = 0.000000000001
 
 func _ready():
 	OS.window_borderless = true
-	$CamSpat/Camera.fov = 1
+	$CamSpat/Camera.fov = 1.5
 	initDict($Sun,0,0,0,500)
 	initDict($GooberPlanet,-40,40,0,25)
 	initDict($MoonPog,-40,40,velCalc(25,15),reallySmallMass)
@@ -21,8 +24,15 @@ func _ready():
 	initDict($DefaultCam,velCalc(500,350),0,0,reallySmallMass)
 
 func _process(delta):
-	if($CamSpat/Camera.fov <= 70):
-		$CamSpat/Camera.fov = 70*(1/(1+exp(- (0.05)*(ticFrame-60) + 6)))
+	if(($CamSpat/Camera.fov < 70) && (!dying)):
+		$CamSpat/Camera.fov = 1.5 + 70*(1/(1+exp(- (0.05)*(ticFrame-60) + 6)))
+	elif(!played):
+		startMusic($Sun/CSGSphere/AudioStreamPlayer3D)
+		for planet in objects:
+			startMusic(planet.get_node("CSGSphere/AudioStreamPlayer3D"))
+		played = true
+	if(dying):
+		zoomIn()
 	for planet in velocitiesDict.keys():
 		for planet2 in velocitiesDict.keys():
 			calcVel(planet,planet2, 0.005)
@@ -111,7 +121,13 @@ func prevPlanet():
 func stopVelocity(): #For demo. Shows the death of planets.
 	if(currentPlanet != $DefaultCam):
 		velocitiesDict[currentPlanet] = Vector3(0,0,0)
-		
+
+func zoomIn():
+	deathFrame += 1
+	$CamSpat/Camera.fov = 70 - 70*(1/(1+exp(- (0.05)*(deathFrame) + 6)))
+	if(($CamSpat/Camera.fov < 1.1)):
+		reset()
+
 func reset():
 	get_tree().reload_current_scene()
 
@@ -123,4 +139,8 @@ func _input(ev):
 	if Input.is_action_just_pressed("ui_select"):
 		stopVelocity()
 	if Input.is_action_just_pressed("ui_cancel"):
-		reset()
+		dying = true
+
+func startMusic(objPlayer):
+	if((objPlayer != null) && (objPlayer.playing == false)):
+		objPlayer.playing = true

@@ -129,7 +129,6 @@ stream = ExtResource( 8 )
 unit_db = 5.0
 unit_size = 25.0
 max_db = 2.0
-autoplay = true
 
 [node name="OmniLight" type="OmniLight" parent="Sun"]
 light_energy = 1.5
@@ -159,7 +158,6 @@ stream = ExtResource( 13 )
 unit_db = 5.0
 unit_size = 15.0
 max_db = 1.0
-autoplay = true
 
 [node name="ChadPlanet" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.984808, -0.173648, 0, 0.173648, 0.984808, 200, 0, 0 )
@@ -177,7 +175,6 @@ stream = ExtResource( 14 )
 unit_db = 5.0
 unit_size = 15.0
 max_db = 1.0
-autoplay = true
 
 [node name="GooberPlanet" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 0, 150 )
@@ -195,7 +192,6 @@ stream = ExtResource( 1 )
 unit_db = 5.0
 unit_size = 15.0
 max_db = 1.0
-autoplay = true
 
 [node name="MoonPog" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 150 )
@@ -213,7 +209,6 @@ stream = ExtResource( 15 )
 unit_db = 5.0
 unit_size = 15.0
 max_db = 1.0
-autoplay = true
 
 [node name="Trajectory" parent="." instance=ExtResource( 3 )]
 
@@ -237,7 +232,6 @@ stream = ExtResource( 16 )
 unit_db = 5.0
 unit_size = 15.0
 max_db = 1.0
-autoplay = true
 
 [node name="SuperMoon" type="Spatial" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 15 )
@@ -255,4 +249,3 @@ stream = ExtResource( 5 )
 unit_db = 5.0
 unit_size = 15.0
 max_db = 1.0
-autoplay = true
