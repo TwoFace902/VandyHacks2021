@@ -1,6 +1,5 @@
 
-(yeah) 1.Better skybox
-2.Cool planet textures
+
 3.Add more planets (should we)
 
 
@@ -12,3 +11,5 @@
 (DONE DONE DONE) 3.Add rotations
 7.Math find good orbits?
 last.Add player shit (sorta did)
+(yeah) 1.Better skybox
+2.Cool planet textures

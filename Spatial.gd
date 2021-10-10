@@ -6,15 +6,17 @@ var velocitiesDict = {}
 var massDict = {}
 var objects = []
 onready var currentPlanet = $DefaultCam
+var reallySmallMass = 0.000000000001
 
 func _ready():
 	$CamSpat/Camera.fov = 1
 	initDict($Sun,0,0,0,500)
 	initDict($GooberPlanet,-40,40,0,25)
-	initDict($MoonPog,-40,40,velCalc(25,15),0.000000000001)
+	initDict($MoonPog,-40,40,velCalc(25,15),reallySmallMass)
 	initDict($ChadPlanet,0,-30,30,12)
+	initDict($SuperMoon,velCalc(12,15),-30,30,reallySmallMass)
 	initDict($Supergoober,30,2,30,16)
-	initDict($DefaultCam,velCalc(500,350),0,0,0.1)
+	initDict($DefaultCam,velCalc(500,350),0,0,reallySmallMass)
 
 func _process(delta):
 	if($CamSpat/Camera.fov <= 70):

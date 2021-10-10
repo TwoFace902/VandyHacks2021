@@ -1,6 +1,5 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Sun.gd" type="Script" id=1]
 [ext_resource path="res://Spatial.gd" type="Script" id=2]
 [ext_resource path="res://TrajectKid.tscn" type="PackedScene" id=3]
 [ext_resource path="res://SpaceImg.jpg" type="Texture" id=4]
@@ -72,11 +71,35 @@ flags_unshaded = true
 flags_do_not_receive_shadows = true
 flags_disable_ambient_light = true
 
+[sub_resource type="SpatialMaterial" id=7]
+params_line_width = 0.1
+params_point_size = 18.6
+albedo_color = Color( 0.431373, 0.376471, 1, 1 )
+albedo_texture = ExtResource( 9 )
+emission_enabled = true
+emission = Color( 0, 0, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+ao_enabled = true
+ao_light_affect = 0.0
+ao_on_uv2 = false
+ao_texture_channel = 0
+uv1_scale = Vector3( 0.1, 0.1, 0.1 )
+uv1_offset = Vector3( -0.037, 0.132, 0 )
+uv1_triplanar = true
+uv1_triplanar_sharpness = 14.3587
+
 [node name="Spatial" type="Spatial"]
 script = ExtResource( 2 )
 
 [node name="Sun" type="Spatial" parent="."]
-script = ExtResource( 1 )
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Sun"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 200, 0 )
+stream = ExtResource( 8 )
+unit_size = 12.0
+autoplay = true
 
 [node name="CSGSphere" type="CSGSphere" parent="Sun"]
 material_override = ExtResource( 7 )
@@ -85,13 +108,6 @@ radius = 40.0
 radial_segments = 25
 rings = 25
 material = ExtResource( 6 )
-
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Sun/CSGSphere"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 200, 0 )
-stream = ExtResource( 8 )
-unit_db = 2.0
-unit_size = 15.0
-autoplay = true
 
 [node name="OmniLight" type="OmniLight" parent="Sun"]
 light_energy = 1.5
@@ -186,3 +202,20 @@ far = 8192.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="CamSpat/Camera"]
 environment = ExtResource( 10 )
+
+[node name="SuperMoon" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 200, 0, 15 )
+
+[node name="CSGSphere" type="CSGSphere" parent="SuperMoon"]
+material_override = SubResource( 7 )
+cast_shadow = 2
+radius = 2.0
+radial_segments = 100
+rings = 100
+smooth_faces = false
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="SuperMoon/CSGSphere"]
+stream = ExtResource( 5 )
+unit_db = -4.0
+unit_size = 2.0
+max_distance = 200.0
