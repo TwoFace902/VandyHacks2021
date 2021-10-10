@@ -1,10 +1,14 @@
-3.Add rotations
-5.Add shit that happens when stuff collides
-2.Add background
-1.Get tongo shit working???
-4.Cool planet textures
-6.Add more planets
+
+(yeah) 1.Better skybox
+2.Cool planet textures
+3.Add more planets (should we)
+
+
+
+(Good) ???. MAKE A MOON FUCKING POG
+(Done) 5.Add shit that happens when stuff collides
+(Done) 2.Add background
+(done) ?ultimate?.Add trajectory rings (how?)
+(DONE DONE DONE) 3.Add rotations
 7.Math find good orbits?
-?ultimate?.Add trajectory rings (how?)
-last.Add player shit
-???. MAKE A MOON FUCKING POG
+last.Add player shit (sorta did)

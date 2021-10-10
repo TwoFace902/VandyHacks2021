@@ -10,6 +10,7 @@ flags_do_not_receive_shadows = true
 flags_disable_ambient_light = true
 params_specular_mode = 4
 params_cull_mode = 1
+albedo_color = Color( 0, 0, 0, 1 )
 
 [node name="TrajectKid" type="CSGSphere"]
 cast_shadow = 0
