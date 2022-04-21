@@ -10,23 +10,51 @@ var shape = null
 func _ready():
 	pass
 
-func createTraject(curToMake):
+func createTraject(curToMake,curCamera):
 	var new_shape_scene = load(\"res://TrajectKid.tscn\")
 	shape = new_shape_scene.instance()
 	shape.translation = curToMake - translation
+	shape.camera = curCamera
 	add_child(shape)
 "
 
-[sub_resource type="SpatialMaterial" id=2]
-flags_unshaded = true
-flags_do_not_receive_shadows = true
-flags_disable_ambient_light = true
+[sub_resource type="GDScript" id=3]
+script/source = "extends SpriteBase3D
+
+var lifeStart = 80
+var lifetime = lifeStart
+var timeBeforeLife = 0.5
+var timeToDie = 0.3
+var camera
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	visible = false
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if(camera != null):
+		look_at(camera.translation, Vector3(0,1,0))
+	lifetime -= 0.025
+	if (lifetime <= (lifeStart - timeBeforeLife) and lifetime >= (lifeStart - (timeBeforeLife*1.5))):
+		visible = true
+		var timeAlongProcess = (lifeStart - timeBeforeLife) - lifetime
+		var toWhite = timeAlongProcess/timeBeforeLife
+		opacity = toWhite
+	elif (lifetime > timeToDie and lifetime < (lifeStart - (timeBeforeLife*1.5))):
+		opacity = 1
+	elif (lifetime <= timeToDie):
+		var toBlack = lifetime/timeToDie
+		opacity = toBlack
+	if(lifetime <= 0):
+		queue_free()
+"
 
 [node name="Trajectory" type="Spatial"]
 script = SubResource( 1 )
 
 [node name="TrajectKid" parent="." instance=ExtResource( 1 )]
 visible = false
-generate_lightmap = false
-radius = 2.0
-material = SubResource( 2 )
+pixel_size = 0.0001
+axis = 1
+script = SubResource( 3 )

@@ -5,24 +5,25 @@ var played = false
 var normalFOV
 var ticFrame = 0
 var deathFrame = 0
-var G = 1000
+var G = 1
 var velocitiesDict = {}
 var massDict = {}
 var objects = []
 onready var currentPlanet = $DefaultCam
-var reallySmallMass = 0.000000000001
+var reallySmallMass = 0.0000001
 
 func _ready():
 	OS.window_borderless = true
 	$CamSpat/Camera.fov = 1.5
-	initDict($Sun,0,0,0,500)
-	initDict($GooberPlanet,-40,40,0,25)
-	initDict($MoonPog,-40,40,velCalc(25,15),reallySmallMass)
-	initDict($ChadPlanet,0,-30,30,12)
-	initDict($SuperMoon,velCalc(12,15),-30,30,reallySmallMass)
-	initDict($Supergoober,30,0,-30,35)
-	initDict($BigBoyMoon,30,velCalc(35,25),-30,reallySmallMass)
-	initDict($DefaultCam,velCalc(500,350),0,0,reallySmallMass)
+	initDict($Sun,0,0,0,500000)
+	initDict($GooberPlanet,0,0,velCalc(massDict[$Sun],400),200)
+	initDict($ChadPlanet,0,0,velCalc(massDict[$Sun],200),100)
+	initDict($Supergoober,0,0,velCalc(massDict[$Sun],600),350)
+	
+	initDict($SuperMoon,0,velCalc(massDict[$ChadPlanet],15),velCalc(massDict[$Sun],200),reallySmallMass)
+	initDict($MoonPog,0,velCalc(massDict[$GooberPlanet],30),velCalc(massDict[$Sun],400),reallySmallMass)
+	initDict($BigBoyMoon,0,velCalc(massDict[$Supergoober],25),velCalc(massDict[$Sun],600),reallySmallMass)
+	initDict($DefaultCam,0,0,velCalc(massDict[$Sun],1000),reallySmallMass)
 
 func _process(delta):
 	if(($CamSpat/Camera.fov < 70) && (!dying)):
@@ -42,7 +43,7 @@ func _process(delta):
 		planet.translation += velocitiesDict[planet]*0.005
 		planet.rotation.y += delta
 		if(ticFrame%30 == 0 && planet != $Sun && planet != $DefaultCam):
-			$Trajectory.createTraject(planet.translation)
+			$Trajectory.createTraject(planet.translation,$CamSpat)
 	#$CamSpat.translation = currentPlanet.translation #If we want instant transition. This other one is cooler.
 	$CamSpat.translation += (0.1)*(currentPlanet.translation - $CamSpat.translation)
 	$CamSpat.look_at($Sun.translation,Vector3(1,1,1))
